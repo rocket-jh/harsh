@@ -348,8 +348,6 @@
 
     <!-- Floating tears around cat -->
     <div id="tearsContainer" style="position:absolute;pointer-events:none;width:100%;height:100%;top:0;left:0"></div>
-
-    <p class="text-white/80 text-base font-bold mt-8 tracking-wide" id="sorry-sub"></p>
   </div>
 
   <!-- Sob overlay for No button -->
@@ -479,15 +477,7 @@
     /* ── YES HANDLER ── */
     const cryingMessages = [
       "Koi galti nahi hai teri... 💜",
-      "Maafi chahiye mujhe... 🥺",
-    ];
-
-    const sorrySubMessages = [
-      "Sach batao, sunega...",
-      "Tujhse naraaz nahi hun...",
-      "Bas baat kar lo ek baar...",
-      "Miss karta/karti hun tujhe...",
-      "Please mat rona... 🥺"
+      "Maafi chahiye mujhe... 🥺"
     ];
 
     function handleYes() {
@@ -504,18 +494,14 @@
 
       document.getElementById('love-msg').textContent =
         cryingMessages[Math.floor(Math.random() * cryingMessages.length)];
-      document.getElementById('sorry-sub').textContent =
-        sorrySubMessages[Math.floor(Math.random() * sorrySubMessages.length)];
 
       gsap.set('#catSvg', { scale: 0, rotation: 10, opacity: 0, transformOrigin: '50% 100%' });
       gsap.set('#love-msg', { y: -40, opacity: 0 });
-      gsap.set('#sorry-sub', { y: 20, opacity: 0 });
 
       const tl = gsap.timeline();
       tl.to('#catSvg', { scale: 1, rotation: 0, opacity: 1, duration: 0.8, ease: 'back.out(1.6)' })
         .to('#catSvg', { y: -8, duration: 0.9, ease: 'power1.inOut', yoyo: true, repeat: -1 }, '+=0.2')
-        .to('#love-msg', { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }, 0.5)
-        .to('#sorry-sub', { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }, 0.75);
+        .to('#love-msg', { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }, 0.5);
 
       spawnCatTears();
       spawnDrops();
